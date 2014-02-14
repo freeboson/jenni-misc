@@ -9,7 +9,7 @@ More info:
  * jenni: https://github.com/myano/jenni/
  * Phenny: http://inamidst.com/phenny/
 '''
-from __future__ import print_function
+
 from lxml import etree
 from StringIO import StringIO
 import web
