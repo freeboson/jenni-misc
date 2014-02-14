@@ -8,6 +8,7 @@ Copyright 2012-2013, Elad Alfassa, <elad@fedoraproject.org>
 Copyright 2012, Edward Powell, embolalia.net
 
 More info:
+ * jenni-misc: https://github.com/freeboson/jenni-misc/
  * jenni: https://github.com/myano/jenni/
  * Phenny: http://inamidst.com/phenny/
 '''
