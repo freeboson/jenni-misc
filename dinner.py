@@ -14,7 +14,6 @@ More info:
 
 import re
 import web
-from urllib import urlopen, urlencode
 
 metamark_api = r'http://metamark.net/api/rest/simple'
 
@@ -34,8 +33,8 @@ def fucking_dinner(jenni, input):
         long_url = results[0][0]
 
         try:
-            short_url = urlopen(metamark_api, 
-                            urlencode({'long_url':long_url})).read()
+            short_url = web.urllib.urlopen(metamark_api, 
+                            web.urllib.urlencode({'long_url':long_url})).read()
         except:
             short_url = long_url
 

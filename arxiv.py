@@ -1,6 +1,6 @@
 #!/usr/bin/env python
 '''
-oed.py - OED Module
+arxiv.py - arXiv Module
 Copyright 2014 Sujeet Akula (sujeet@freeboson.org)
 Licensed under the Eiffel Forum License 2.
 

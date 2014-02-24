@@ -21,6 +21,34 @@ from HTMLParser import HTMLParser
 import re, urllib, gzip, StringIO
 import web
 
+def yttitle(bot, match):
+    """
+    Get information about the latest video uploaded by the channel provided.
+    """
+    if match is None:
+        return
+
+    uri = 'http://gdata.youtube.com/feeds/api/videos/' + match.group(2) + '?v=2&alt=json'
+
+    video_info = ytget(bot, None, uri)
+    if video_info is 'err':
+        return
+
+    #combine variables and print
+    message = '[YouTube] Title: ' + video_info['title'] + \
+              ' | Uploader: ' + video_info['uploader'] + \
+              ' | Uploaded: ' + video_info['uploaded'] + \
+              ' | Duration: ' + video_info['length'] + \
+              ' | Views: ' + video_info['views'] + \
+              ' | Comments: ' + video_info['comments'] + \
+              ' | Likes: ' + video_info['likes'] + \
+              ' | Dislikes: ' + video_info['dislikes'] + \
+              ' | Link: ' + video_info['link']
+
+    bot.say(HTMLParser().unescape(message))
+
+    return True
+
 def ytget(bot, trigger, uri):
     try:
         bytes = web.get(uri)
@@ -143,6 +171,28 @@ def ytsearch(bot, trigger):
     bot.say(HTMLParser().unescape(message))
 
 ytsearch.commands = ['yt', 'youtube']
+ytsearch.priority = 'high'
+ytsearch.rate = 3
+
+def ytlast(bot, trigger):
+    if not trigger.group(2):
+        return
+    uri = 'https://gdata.youtube.com/feeds/api/users/' + trigger.group(2).encode('utf-8') + '/uploads?max-results=1&alt=json&v=2'
+    video_info = ytget(bot, trigger, uri)
+
+    if video_info is 'err':
+        return
+
+    message = ('[Latest Video] Title: ' + video_info['title'] +
+              ' | Duration: ' + video_info['length'] +
+              ' | Uploaded: ' + video_info['uploaded'] +
+              ' | Views: ' + video_info['views'] +
+              ' | Likes: ' + video_info['likes'] +
+              ' | Dislikes: ' + video_info['dislikes'] +
+              ' | Link: ' + video_info['link'])
+
+    bot.say(HTMLParser().unescape(message))
+ytsearch.commands = ['ytlast', 'ytnew', 'ytlatest']
 ytsearch.priority = 'high'
 ytsearch.rate = 3
 
