@@ -153,10 +153,11 @@ def ytsearch(bot, trigger):
     video_info = ytget(bot, trigger, uri)
 
     if video_info is 'err':
+        bot.reply("Sorry, I couldn't find the video you are looking for")
         return
 
     if video_info['link'] == 'N/A':
-        bot.say("Sorry, I couldn't find the video you are looking for")
+        bot.reply("Sorry, I couldn't find the video you are looking for")
         return
     message = '[YouTube] Title: ' + video_info['title'] + \
               ' | Uploader: ' + video_info['uploader'] + \
@@ -192,9 +193,9 @@ def ytlast(bot, trigger):
               ' | Link: ' + video_info['link'])
 
     bot.say(HTMLParser().unescape(message))
-ytsearch.commands = ['ytlast', 'ytnew', 'ytlatest']
-ytsearch.priority = 'high'
-ytsearch.rate = 3
+ytlast.commands = ['ytlast', 'ytnew', 'ytlatest']
+ytlast.priority = 'high'
+ytlast.rate = 3
 
 if __name__ == '__main__':
     print __doc__.strip()
