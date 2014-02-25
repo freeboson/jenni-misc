@@ -37,7 +37,7 @@ hparse = HTMLParser()
 def search(query):
     defs = list()
 
-    result_xml = web.get(oed_url.format(urllib.quote(query)))
+    result_xml = web.get(oed_url.format(web.urllib.quote(query)))
 
     result_tree = etree.parse(StringIO(result_xml))
     root = result_tree.getroot()
